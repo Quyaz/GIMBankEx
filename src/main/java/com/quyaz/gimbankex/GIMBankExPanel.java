@@ -206,7 +206,6 @@ public class GIMBankExPanel extends PluginPanel {
         pickedIcon.removeAll();
         pickedIcon.setBackground(ColorScheme.BRAND_ORANGE);
         AsyncBufferedImage itemImage = itemManager.getImage(selectedItem.getItemId(), selectedItem.getAmount(), selectedItem.getAmount() > 1);
-        System.out.println("Reloaded icon with parameters : " + selectedItem.getItemId() + "|" + selectedItem.getAmount() + "|" + (selectedItem.getAmount() > 1));
         itemImage.addTo(pickedIcon);
         pickedIcon.revalidate();
     }

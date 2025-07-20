@@ -8,6 +8,8 @@ import net.runelite.api.Client;
 import net.runelite.api.Item;
 import net.runelite.client.game.ItemManager;
 import okhttp3.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import java.io.IOException;
@@ -21,6 +23,7 @@ import static net.runelite.api.gameval.ItemID.BANK_FILLER;
 
 public class GIMBankExClient {
 
+    private static final Logger log = LoggerFactory.getLogger(GIMBankExClient.class);
     @Inject
     private GimBankExConfig config;
 
@@ -61,7 +64,7 @@ public class GIMBankExClient {
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                System.err.println(e.toString());
+                log.debug(e.toString());
             }
 
             @Override
@@ -69,7 +72,7 @@ public class GIMBankExClient {
                 ResponseBody body = response.body();
                 int code = response.code();
                 if (code == 500) {
-                    System.err.println(body.string());
+                    log.debug(body.string());
                 } else {
                     getMessages(true, true);
                 }
@@ -210,7 +213,7 @@ public class GIMBankExClient {
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                System.out.println(e.toString());
+                log.debug(e.toString());
             }
 
             @Override
@@ -218,7 +221,7 @@ public class GIMBankExClient {
                 ResponseBody body = response.body();
                 int code = response.code();
                 if (code == 500) {
-                    System.err.println(body.string());
+                    log.debug(body.string());
                 }
                 getBankTransactions(true);
             }
@@ -238,7 +241,7 @@ public class GIMBankExClient {
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                System.err.println(e.toString());
+                log.debug(e.toString());
             }
 
             @Override
@@ -246,7 +249,7 @@ public class GIMBankExClient {
                 ResponseBody body = response.body();
                 int code = response.code();
                 if (code == 500) {
-                    System.err.println(body.string());
+                    log.debug(body.string());
                 } else {
                     getMessages(true, true);
                 }
