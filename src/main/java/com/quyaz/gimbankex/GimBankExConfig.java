@@ -6,7 +6,7 @@ import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
-@ConfigGroup("example")
+@ConfigGroup("GimBankEx")
 public interface GimBankExConfig extends Config {
     @ConfigItem(
             keyName = "api_base",
