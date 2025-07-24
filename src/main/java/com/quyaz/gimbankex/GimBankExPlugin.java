@@ -72,7 +72,7 @@ public class GimBankExPlugin extends Plugin {
     protected void startUp() throws Exception {
         log.info("GIM Bank ex started!");
         panel = new GIMBankExPanel(gimClient, itemManager);
-        final BufferedImage icon = ImageUtil.loadImageResource(getClass(), "/Group.png");
+        final BufferedImage icon = ImageUtil.loadImageResource(getClass(), "/groupiron.png");
         toolbarButton = NavigationButton.builder()
                 .tooltip("GIM Bank Ex")
                 .icon(icon)
