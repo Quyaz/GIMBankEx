@@ -118,7 +118,7 @@ public class GIMBankExPanel extends PluginPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 messageInput.setText("");
-                gimBankEx.getMessages(false, true);
+                gimBankEx.getMessages(true, true);
             }
         });
 
