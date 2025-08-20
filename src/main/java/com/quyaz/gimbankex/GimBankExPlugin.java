@@ -29,6 +29,7 @@ import okhttp3.*;
 
 import java.awt.image.BufferedImage;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @PluginDescriptor(
@@ -177,6 +178,9 @@ public class GimBankExPlugin extends Plugin {
         after.forEach(i -> afterItems.put(i.getId(), i.getQuantity()));
         List<Item> results = new ArrayList<>();
         for (Item i : before) {
+            if (i == null || i.getId() == -1) {
+                continue;
+            }
             beforeItems.put(i.getId(), i.getQuantity());
             int diff = afterItems.getOrDefault(i.getId(), 0) - i.getQuantity();
             if (diff != 0) {
@@ -217,7 +221,7 @@ public class GimBankExPlugin extends Plugin {
     private List<Item> getItemsFromContainer(ItemContainer shared) {
         Item[] storageItems = shared.getItems();
         if (storageItems.length == 0) return new ArrayList<>();
-        List<Item> itemList = Arrays.asList(storageItems);
+        List<Item> itemList = Arrays.stream(storageItems).filter(p -> p.getId() > -1).collect(Collectors.toList());
 
         storageItems = new Item[itemList.size()];
         itemList.toArray(storageItems);
