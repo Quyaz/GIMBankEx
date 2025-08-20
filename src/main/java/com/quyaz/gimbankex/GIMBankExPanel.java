@@ -212,8 +212,11 @@ public class GIMBankExPanel extends PluginPanel {
 
     private JPanel createbankPanel() {
         JPanel bankPanel = new JPanel();
+        JPanel topBankPanel = new JPanel();
         bankPanel.setLayout(new BorderLayout());
         bankPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
+
+        topBankPanel.setLayout(new DynamicGridLayout(1,4));
 
         bankTransactionsPanel = new JPanel();
         bankTransactionsPanel.setLayout(new DynamicGridLayout(0, 1));
@@ -264,7 +267,21 @@ public class GIMBankExPanel extends PluginPanel {
             searchBar.setEditable(true);
             lookupTransactions();
         });
-        bankPanel.add(searchBar, "North");
+        topBankPanel.add(searchBar, BorderLayout.LINE_START);
+
+        BufferedImage refreshIcon = ImageUtil.loadImageResource(getClass(), "/Refresh.png");
+        JButton refreshButton = new JButton();
+        refreshButton.setIcon(new ImageIcon(refreshIcon));
+        refreshButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                gimBankEx.getBankTransactions(true);
+            }
+        });
+
+        topBankPanel.add(refreshButton, BorderLayout.AFTER_LINE_ENDS);
+        bankPanel.add(topBankPanel, "North");
         bankPanel.add(bankTransactionsPanel, "Center");
         JButton loadMorePanel = new JButton();
         loadMorePanel.setIcon(new ImageIcon(ImageUtil.loadImageResource(getClass(), "/more.png")));
