@@ -58,6 +58,8 @@ public class GIMBankExClient {
         }
         Request request = new Request.Builder()
                 .url(url)
+                .addHeader("token", config.token())
+                .addHeader("group_name", config.groupName())
                 .post(RequestBody.create(MediaType.parse("application/json; charset=utf-8"), j.toString()))
                 .build();
 
@@ -87,6 +89,8 @@ public class GIMBankExClient {
         url = url + (url.endsWith("/") ? messages : ("/" + messages));
         Request request = new Request.Builder()
                 .url(url)
+                .addHeader("token", config.token())
+                .addHeader("group_name", config.groupName())
                 .get()
                 .build();
         if (async) {
@@ -130,6 +134,8 @@ public class GIMBankExClient {
         }
         Request request = new Request.Builder()
                 .url(url)
+                .addHeader("token", config.token())
+                .addHeader("group_name", config.groupName())
                 .get()
                 .build();
         okHttpClient.newCall(request).enqueue(new Callback() {
@@ -207,6 +213,8 @@ public class GIMBankExClient {
         }
         Request request = new Request.Builder()
                 .url(url)
+                .addHeader("token", config.token())
+                .addHeader("group_name", config.groupName())
                 .post(RequestBody.create(MediaType.parse("application/json; charset=utf-8"), j.toString()))
                 .build();
 
@@ -235,6 +243,8 @@ public class GIMBankExClient {
         url = url + "/" + message.getId();
         Request request = new Request.Builder()
                 .url(url)
+                .addHeader("token", config.token())
+                .addHeader("group_name", config.groupName())
                 .delete()
                 .build();
 
