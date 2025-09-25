@@ -12,6 +12,7 @@ public interface GimBankExConfig extends Config {
             keyName = "api_base",
             name = "API URL",
             description = "The server url",
+            secret = true,
             position = 1
     )
     default String api() {
@@ -42,6 +43,7 @@ public interface GimBankExConfig extends Config {
             keyName = "groupName",
             name = "Group name",
             description = "Group name",
+            secret = true,
             position = 4
     )
     default String groupName() {
@@ -52,6 +54,7 @@ public interface GimBankExConfig extends Config {
             keyName = "token",
             name = "Token",
             description = "Token",
+            secret = true,
             position = 5
     )
     default String token() {
