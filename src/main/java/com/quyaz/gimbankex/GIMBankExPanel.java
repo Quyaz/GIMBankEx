@@ -276,6 +276,7 @@ public class GIMBankExPanel extends PluginPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                searchBar.setText("");
                 gimBankEx.getBankTransactions(true);
             }
         });
@@ -394,7 +395,7 @@ public class GIMBankExPanel extends PluginPanel {
             }
 
             final JLabel imageLabel = new JLabel();
-//            imageLabel.setToolTipText(buildToolTip(item));
+            imageLabel.setToolTipText(buildToolTip(item));
             imageLabel.setVerticalAlignment(SwingConstants.CENTER);
             imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -419,6 +420,10 @@ public class GIMBankExPanel extends PluginPanel {
 
         transactionPanel.revalidate();
         return transactionPanel;
+    }
+
+    private String buildToolTip(BankItem item) {
+        return item.getAmount() + " " + item.getItem();
     }
 
     private JPanel createMessage(GIMMessage message) {
