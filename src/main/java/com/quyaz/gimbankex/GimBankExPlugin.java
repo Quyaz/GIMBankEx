@@ -33,7 +33,9 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @PluginDescriptor(
-        name = "GIM Bank Ex"
+        name = "GIM Bank Extended",
+        description = "Adds a panel that tracks group iron man bank transactions",
+        tags = {"Group ironman", "GIM", "Bank"}
 )
 public class GimBankExPlugin extends Plugin {
     @Inject
