@@ -327,10 +327,12 @@ public class GIMBankExPanel extends PluginPanel {
 
     public void refreshTransactions(ArrayList<ItemTransaction> transactions) {
         bankTransactionsPanel.removeAll();
+        bankTransactionsPanel.revalidate();
         if (transactions != null && !transactions.isEmpty()) {
             for (ItemTransaction transaction : transactions) {
                 bankTransactionsPanel.add(createTransactionPanel(transaction));
             }
+            bankTransactionsPanel.repaint();
             bankTransactionsPanel.revalidate();
         }
     }
@@ -399,7 +401,7 @@ public class GIMBankExPanel extends PluginPanel {
             imageLabel.setVerticalAlignment(SwingConstants.CENTER);
             imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-            AsyncBufferedImage itemImage = itemManager.getImage(item.getItemId(), item.getAmount(), item.getAmount() > 1 || item.getAmount() < -1);
+            AsyncBufferedImage itemImage = itemManager.getImage(item.getItemId(), Math.abs(item.getAmount()), item.getAmount() > 1 || item.getAmount() < -1);
             itemImage.addTo(imageLabel);
             slotContainer.add(imageLabel);
 
